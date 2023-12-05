@@ -1,28 +1,30 @@
 from datetime import datetime
 
+
 def is_palindrome(s):
-    return ''.join(s.split()).lower() == ''.join(s.split()).lower()[::-1]
+    clean_phrase = ''.join(s.split()).lower()
+    return clean_phrase == clean_phrase[::-1]
+
 
 def application():
     saisir = ""
-    while saisir !='q':
+    while saisir.lower() != 'q':
         current_datetime = datetime.now()
         current_hour = current_datetime.hour
-        if current_hour < 18 :
-            print("*** Bonjour et bienvenue sur cette application ***")
-        else:
-            print("*** Bonsoir et bienvenue sur cette application ***")
+        greeting = "*** Bonjour et bienvenue sur cette application ***" if current_hour < 18 else "*** Bonsoir et bienvenue sur cette application ***"
+        print(greeting)
 
-        phrase = input("Écrivez votre phrase : ")
+        phrase = input("Écrivez votre phrase : ")
         if is_palindrome(phrase):
-            print("Bien dit !")            
+            print("Bien dit!")
         else:
-            print("Votre phrase n'etez pas un palandrome ")
-        
-        saisir = input("Entrer q si vous vouler arreter ")
-        if saisir == "q":
+            print("Votre phrase n'est pas un palindrome")
+
+        saisir = input("Entrer 'q' si vous voulez arrêter ")
+        if saisir.lower() == "q":
             print("Au revoir")
             break
-            
 
-application()
+
+if __name__ == "__main__":
+    application()
